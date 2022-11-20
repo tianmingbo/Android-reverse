@@ -1,4 +1,4 @@
-//com.zngst.app
+//开启webview调试
 Java.perform(function () {
     var WebView = Java.use('android.webkit.WebView');
     WebView.$init.overload('android.content.Context').implementation = function (a) {

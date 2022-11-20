@@ -1,80 +1,32 @@
-Java.perform(function(){
+Java.perform(function () {
     var WebView = Java.use('android.webkit.WebView');
-    WebView.$init.overload('android.content.Context').implementation = function(a){
-        console.log("WebView.$init is called!");
+    WebView.$init.overload('android.content.Context').implementation = function (a) {
+        console.log("WebView.$init is called!1");
         var retval = this.$init(a);
         this.setWebContentsDebuggingEnabled(true);
         return retval;
     }
-    WebView.$init.overload('android.content.Context', 'android.util.AttributeSet').implementation = function(a, b){
-        console.log("WebView.$init is called!");
+    WebView.$init.overload('android.content.Context', 'android.util.AttributeSet').implementation = function (a, b) {
+        console.log("WebView.$init is called!2");
         var retval = this.$init(a, b);
         this.setWebContentsDebuggingEnabled(true);
         return retval;
     }
-    WebView.$init.overload('android.content.Context', 'android.util.AttributeSet', 'int').implementation = function(a, b, c){
-        console.log("WebView.$init is called!");
+    WebView.$init.overload('android.content.Context', 'android.util.AttributeSet', 'int').implementation = function (a, b, c) {
+        console.log("WebView.$init is called!3");
         var retval = this.$init(a, b, c);
         this.setWebContentsDebuggingEnabled(true);
         return retval;
     }
-    WebView.$init.overload('android.content.Context', 'android.util.AttributeSet', 'int', 'boolean').implementation = function(a, b, c, d){
-        console.log("WebView.$init is called!");
-        var retval = this.$init(a, b, c, d);
-        this.setWebContentsDebuggingEnabled(true);
-        return retval;
-    }
-    WebView.$init.overload('android.content.Context', 'android.util.AttributeSet', 'int', 'int').implementation = function(a, b, c, d){
-        console.log("WebView.$init is called!");
-        var retval = this.$init(a, b, c, d);
-        this.setWebContentsDebuggingEnabled(true);
-        return retval;
-    }
-    WebView.$init.overload('android.content.Context', 'android.util.AttributeSet', 'int', 'java.util.Map', 'boolean').implementation = function(a, b, c, d, e){
-        console.log("WebView.$init is called!");
-        var retval = this.$init(a, b, c, d, e);
-        this.setWebContentsDebuggingEnabled(true);
-        return retval;
-    }
-    WebView.$init.overload('android.content.Context', 'android.util.AttributeSet', 'int', 'int', 'java.util.Map', 'boolean').implementation = function(a, b, c, d, e, f){
-        console.log("WebView.$init is called!");
-        var retval = this.$init(a, b, c, d, e, f);
-        this.setWebContentsDebuggingEnabled(true);
-        return retval;
-    }
-    
-    WebView.setWebContentsDebuggingEnabled.implementation = function(){
+
+    WebView.setWebContentsDebuggingEnabled.implementation = function () {
         this.setWebContentsDebuggingEnabled(true);
         console.log("setWebContentsDebuggingEnabled is called!");
     }
 
-    // var SysWebView = Java.use('io.dcloud.common.adapter.ui.webview.SysWebView');
-    // console.log(SysWebView.setWebViewData);
-    // SysWebView.setWebViewData.implementation = function(){
-    //     console.log("setWebViewData is called!");
-    // }
-    //
-    // var AES = Java.use('io.dcloud.feature.encryption.AesEncryptionUtil');
-    // AES.decrypt.overload('java.lang.String', 'java.lang.String', 'java.lang.String').implementation = function(a, b, c){
-    //     console.log(a, b, c);
-    //     var retval = this.decrypt(a, b, c);
-    //     console.log(retval);
-    //     return retval;
-    // }
-    //
-    // var class_b = Java.use('io.dcloud.encryption.b');
-    // class_b.a.overload('android.content.Context', '[B').implementation = function(a, b){
-    //     var retval = this.a(a, b);
-    //     console.log(retval);
-    //     return retval;
-    // }
-
 });
-
-
-
 Java.perform(function () {
-
+    //打印堆栈
     function showStacks() {
         console.log(
             Java.use("android.util.Log")
@@ -83,16 +35,21 @@ Java.perform(function () {
                 )
         );
     }
+
     var ByteString = Java.use("com.android.okhttp.okio.ByteString");
+
     function toBase64(tag, data) {
         console.log(tag + " Base64: ", ByteString.of(data).base64());
     }
+
     function toHex(tag, data) {
         console.log(tag + " Hex: ", ByteString.of(data).hex());
     }
+
     function toUtf8(tag, data) {
         console.log(tag + " Utf8: ", ByteString.of(data).utf8());
     }
+
     // toBase64([48,49,50,51,52]);
     // toHex([48,49,50,51,52]);
     // toUtf8([48,49,50,51,52]);
@@ -259,7 +216,7 @@ Java.perform(function () {
         var algorithm = this.getAlgorithm();
         var tag = algorithm + " init Key";
         var className = JSON.stringify(arguments[1]);
-        if(className.indexOf("OpenSSLRSAPrivateKey") === -1){
+        if (className.indexOf("OpenSSLRSAPrivateKey") === -1) {
             var keyBytes = arguments[1].getEncoded();
             toUtf8(tag, keyBytes);
             toHex(tag, keyBytes);
@@ -380,9 +337,3 @@ Java.perform(function () {
     }
 
 });
-
-
-
-
-
-
